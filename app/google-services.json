@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "434426675796",
+    "firebase_url": "https://testpcfinder.firebaseio.com",
+    "project_id": "testpcfinder",
+    "storage_bucket": "testpcfinder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:434426675796:android:db0f02379f7413eb",
+        "android_client_info": {
+          "package_name": "difkey.pcfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "434426675796-10bbibcr4p341267nk0a7a0qk2pkhpvr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "difkey.pcfinder",
+            "certificate_hash": "b57dc5d30df5cea7db8a2c3d63edd9dd707e9389"
+          }
+        },
+        {
+          "client_id": "434426675796-drqt0pmegh2be6dse73ufd1kq8p8jfak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU8E2WW0QdoBJOYuvm5EM0z4EwYaPf434"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "434426675796-drqt0pmegh2be6dse73ufd1kq8p8jfak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
