@@ -10,12 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:scrollbars="none"
         tools:layout_editor_absoluteX="8dp">
 
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -40,9 +42,11 @@
                 android:id="@+id/Titre1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:text="@string/display_Titre1"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,9 +120,12 @@
                 android:id="@+id/Titre2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:text="@string/display_Titre2"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -172,9 +179,12 @@
                 android:id="@+id/Titre3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:text="@string/display_Titre3"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -228,9 +238,12 @@
                 android:id="@+id/Titre4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_weight="1"
                 android:text="@string/display_Titre4"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -292,7 +305,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
         </LinearLayout>
-
 
 
     </LinearLayout>
