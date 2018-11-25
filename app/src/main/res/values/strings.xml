@@ -13,23 +13,20 @@
     <string name="ocr_failure">No text captured</string>
     <string name="ocr_error">"Error reading text: %1$s"</string>
 
-    <string name="button_recup_data">"Recup Data"</string>
-    <string name="button__start_img_recognize">Reconnaissance d\'image</string>
-    <string name="button_start_ocr">Reconnaissance d\'etiquette</string>
+    <string name="not_find_title">Pas Trouvé</string>
+    <string name="not_find_message">Aucune correspondance trouvé, \n
+                                    voulez vous faire une saisie manuelle ?</string>
+    <string name="restart">Réessayer</string>
+    <string name="manual">Manuelle</string>
+    <string name="quit">Quitter</string>
 
-    <string name="not_find_title">Not find</string>
-    <string name="not_find_message">No Matching Find, do you want to retry or set it manually ?</string>
-    <string name="restart">Retry</string>
-    <string name="manual">Manual</string>
-    <string name="quit">Leave</string>
+    <string name="not_find_title_man">Aucune correspondance</string>
+    <string name="not_find_message_man">Reférence absente dans la Base de Donnée, \n
+                                        réessayer avec une autre ?</string>
+    <string name="restart_man">Réessayer</string>
+    <string name="quit_man">Quitter</string>
 
-    <string name="not_find_title_man">Not Find</string>
-    <string name="not_find_message_man">Reference not in the Database, \n
-                                        Retry with an other.</string>
-    <string name="restart_man">Retry</string>
-    <string name="quit_man">Leave</string>
-
-    <string name="manual_search_hint">Enter the ref to search</string>
+    <string name="manual_search_hint">Entrez la référence a chercher</string>
 
     <string name="princiTitle">Find your laptop</string>
     <string name="buttonDescOCR">Button Image Lancement OCR</string>

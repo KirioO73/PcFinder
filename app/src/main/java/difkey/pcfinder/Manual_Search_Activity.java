@@ -11,7 +11,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ import difkey.pcfinder.db.com.recherche;
 public class Manual_Search_Activity extends AppCompatActivity {
 
     private EditText searchInput;
+    private Button search;
+
     private recherche finder;
     private Manual_Search_Activity activity = this;
 
@@ -33,6 +37,7 @@ public class Manual_Search_Activity extends AppCompatActivity {
 
         finder = new recherche();
         searchInput = findViewById(R.id.searchInput);
+        search = findViewById(R.id.lanceSearch);
 
         searchInput.setOnEditorActionListener( new TextView.OnEditorActionListener(){
 
@@ -44,6 +49,14 @@ public class Manual_Search_Activity extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                searchInput.clearFocus();
+                finder.recherchePcManual(searchInput.getText().toString().toUpperCase(), activity);
             }
         });
     }

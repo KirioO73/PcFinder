@@ -5,13 +5,13 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class model_pc {
-    public String modele;
     public String annee;
+    public String dimensions;
+    public String marque;
+    public String modele;
+    public String poids;
     public String processeur;
     public String ram;
-    public String marque;
-    public String poids;
-    public String dimensions;
     public String resolution;
     public String stockage;
     public String taille;
@@ -28,7 +28,8 @@ public class model_pc {
                     String marque,
                     String dimensions,
                     String resolution,
-                    String stockage,String taille,
+                    String stockage,
+                    String taille,
                     String poids) {
         this.modele = modele;
         this.processeur = processeur;

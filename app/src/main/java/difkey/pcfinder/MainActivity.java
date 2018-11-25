@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        B_recoOcr.setOnClickListener(new View.OnClickListener(){
+        B_recoText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 // launch Ocr capture activity.
