@@ -6,43 +6,47 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/StartOCR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_start_ocr"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:background="@null"
+        android:contentDescription="@string/buttonDescOCR"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintEnd_toStartOf="@+id/StartText"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+        app:srcCompat="@drawable/ic_ocr_search" />
 
-    <CheckBox
-        android:id="@+id/auto_focus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:checked="true"
-        android:text="@string/auto_focus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/use_flash"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StartOCR" />
-
-    <CheckBox
-        android:id="@+id/use_flash"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/auto_focus"
-        android:checked="false"
-        android:text="@string/use_flash"
+    <ImageButton
+        android:id="@+id/StartText"
+        android:layout_width="120dp"
+        android:layout_height="90dp"
+        android:background="@null"
+        android:contentDescription="@string/buttonDescManual"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/auto_focus"
-        app:layout_constraintTop_toBottomOf="@+id/StartOCR" />
+        app:layout_constraintStart_toEndOf="@+id/StartOCR"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_manual_search" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/princiTitle"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/StartOCR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
 

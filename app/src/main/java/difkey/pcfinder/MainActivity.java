@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -17,9 +18,8 @@ import difkey.pcfinder.ocr.OcrCaptureActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button B_recoOcr;
-    private CompoundButton autoFocus;
-    private CompoundButton useFlash;
+    private ImageButton B_recoOcr;
+    private ImageButton B_recoText;
 
     private static final int RC_OCR_CAPTURE = 9003;
     private static final int MANUAL_SEARCHING = 9004;
@@ -31,19 +31,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         B_recoOcr = findViewById(R.id.StartOCR);
-        autoFocus = (CompoundButton) findViewById(R.id.auto_focus);
-        useFlash = (CompoundButton) findViewById(R.id.use_flash);
-
+        B_recoText = findViewById(R.id.StartText);
 
         B_recoOcr.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 // launch Ocr capture activity.
                 Intent intent = new Intent(view.getContext(), OcrCaptureActivity.class);
-                intent.putExtra(OcrCaptureActivity.AutoFocus, autoFocus.isChecked());
-                intent.putExtra(OcrCaptureActivity.UseFlash, useFlash.isChecked());
-
+                intent.putExtra(OcrCaptureActivity.AutoFocus, true);
+                intent.putExtra(OcrCaptureActivity.UseFlash, false);
                 startActivityForResult(intent, RC_OCR_CAPTURE);
+            }
+        });
+
+        B_recoOcr.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                // launch Ocr capture activity.
+                Intent intent = new Intent(view.getContext(), Manual_Search_Activity.class);
+                startActivityForResult(intent, MANUAL_SEARCHING);
             }
         });
 

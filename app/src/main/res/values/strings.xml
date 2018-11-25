@@ -31,4 +31,7 @@
 
     <string name="manual_search_hint">Enter the ref to search</string>
 
+    <string name="princiTitle">Find your laptop</string>
+    <string name="buttonDescOCR">Button Image Lancement OCR</string>
+    <string name="buttonDescManual">Button Image Lancement Manual Searching</string>
 </resources>
