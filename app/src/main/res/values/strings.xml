@@ -34,4 +34,21 @@
     <string name="princiTitle">Find your laptop</string>
     <string name="buttonDescOCR">Button Image Lancement OCR</string>
     <string name="buttonDescManual">Button Image Lancement Manual Searching</string>
+
+    <string name="display_Titre1">INFORMATIONS GENERALES</string>
+    <string name="display_Titre2">DIMENSIONS</string>
+    <string name="display_Titre3">ECRAN</string>
+    <string name="display_Titre4">CARACTERISTIQUES TECHNIQUES</string>
+    <string name="display_Modele">MODELE</string>
+    <string name="display_Annee">ANNEE</string>
+    <string name="display_Dimensions">DIMENSIONS</string>
+    <string name="display_Marque">MARQUE</string>
+    <string name="display_Poids">POIDS</string>
+    <string name="display_Processeur">PROCESSEUR</string>
+    <string name="display_RAM">RAM</string>
+    <string name="display_Resolution">RESOLUTION</string>
+    <string name="display_Stoquage">STOCKAGE</string>
+    <string name="display_Taille">TAILLE</string>
+
+
 </resources>

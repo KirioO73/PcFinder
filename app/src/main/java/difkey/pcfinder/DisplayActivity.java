@@ -16,24 +16,26 @@ public class DisplayActivity extends AppCompatActivity {
     private TextView dimensions;
     private TextView resolution;
     private TextView marque;
+    private TextView modele;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
-        title = findViewById(R.id.title);
-        processeur = findViewById(R.id.processor);
-        annee = findViewById(R.id.annee);
-        ram = findViewById(R.id.ram);
-        stockage = findViewById(R.id.stockage);
-        taille = findViewById(R.id.taille);
-        poids = findViewById(R.id.poids);
-        dimensions = findViewById(R.id.dimensions);
-        resolution = findViewById(R.id.resolution);
-        marque = findViewById(R.id.marque);
+        title = findViewById(R.id.titreGENERAL);
+        processeur = findViewById(R.id.valuePROCESSEUR);
+        annee = findViewById(R.id.valueANNEE);
+        ram = findViewById(R.id.valueRAM);
+        stockage = findViewById(R.id.valueSTOCKAGE);
+        taille = findViewById(R.id.valueTAILLE);
+        poids = findViewById(R.id.valuePOIDS);
+        dimensions = findViewById(R.id.valueDIMENSIONS);
+        resolution = findViewById(R.id.valueRESOLUTION);
+        marque = findViewById(R.id.valueMARQUE);
+        modele = findViewById(R.id.valueMODELE);
 
-        title.setText(getIntent().getStringExtra("title"));
+        title.setText(getIntent().getStringExtra("modele"));
         processeur.setText(getIntent().getStringExtra("processeur"));
         annee.setText(getIntent().getStringExtra("annee"));
         ram.setText(getIntent().getStringExtra("ram"));
@@ -43,5 +45,6 @@ public class DisplayActivity extends AppCompatActivity {
         dimensions.setText(getIntent().getStringExtra("dimensions"));
         resolution.setText(getIntent().getStringExtra("resolution"));
         marque.setText(getIntent().getStringExtra("marque"));
+        modele.setText(getIntent().getStringExtra("modele"));
     }
 }
