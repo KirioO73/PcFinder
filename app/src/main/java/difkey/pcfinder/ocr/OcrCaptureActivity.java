@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -73,10 +74,14 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
+    private OcrDetectorProcessor detector;
 
     // Helper objects for detecting taps and pinches.
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
+
+    boolean autoFocus;
+    boolean useFlash;
 
     /**
      * Initializes the UI and creates the detector pipeline.
@@ -90,8 +95,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
 
         // read parameters from the intent used to launch the activity.
-        boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
-        boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
+        autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
+        useFlash = getIntent().getBooleanExtra(UseFlash, false);
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -168,7 +173,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         // on screen.
 
         TextRecognizer textRecognizer = new TextRecognizer.Builder(context).build();
-        textRecognizer.setProcessor(new OcrDetectorProcessor(mGraphicOverlay, this));
+        detector = new OcrDetectorProcessor(mGraphicOverlay, this);
+        textRecognizer.setProcessor(detector);
 
         if (!textRecognizer.isOperational()) {
             // Note: The first time that an app using a Vision API is installed on a
@@ -197,12 +203,12 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         // to other detection examples to enable the text recognizer to detect small pieces of text.
         mCameraSource =
                 new CameraSource.Builder(getApplicationContext(), textRecognizer)
-                .setFacing(CameraSource.CAMERA_FACING_BACK)
-                .setRequestedPreviewSize(1280, 1024)
-                .setRequestedFps(2.0f)
-                .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
-                .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
-                .build();
+                        .setFacing(CameraSource.CAMERA_FACING_BACK)
+                        .setRequestedPreviewSize(1280, 1024)
+                        .setRequestedFps(2.0f)
+                        .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
+                        .setFocusMode(autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null)
+                        .build();
     }
 
     /**
@@ -266,7 +272,7 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         if (grantResults.length != 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Camera permission granted - initialize the camera source");
             // We have permission, so create the camerasource
-            boolean autoFocus = getIntent().getBooleanExtra(AutoFocus,false);
+            boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
             boolean useFlash = getIntent().getBooleanExtra(UseFlash, false);
             createCameraSource(autoFocus, useFlash);
             return;
@@ -314,6 +320,62 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
     }
 
+    boolean over = false;
+
+    public void notFinded() {
+        //TODO not finded show dialog Box when we can restart or OK
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //Create the alert dialog
+                if (!over) {
+                    over = true;
+                    createAlertDialogStop();
+                }
+            }
+        });
+    }
+
+    private void createAlertDialogStop() {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(this);
+        }
+        builder.setTitle(R.string.not_find_title)
+                .setMessage(R.string.not_find_message)
+                .setPositiveButton(R.string.manual, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent data = new Intent();
+                        setResult(1000, data);
+                        finish();
+                        Log.e("DIALOG NOTFIND : ", "manual");
+                    }
+                })
+                .setNeutralButton(R.string.restart, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                        Log.e("DIALOG NOTFIND : ", "restart");
+                        over = false;
+                        detector.resetCache();
+                    }
+                })
+                .setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                        Log.e("DIALOG NOTFIND : ", "quit");
+                        setResult(1001, null);
+                        finish();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
+
+
+
+
     public void finded(Intent data){
         Log.e("OCR RETOUR DATA", "annee : " + data.getStringExtra("annee") + " --------------------------------------------- ");
         setResult(CommonStatusCodes.SUCCESS, data);
@@ -349,9 +411,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         return text != null;
     }
 
-    public void notFinded() {
-        //TODO not finded show dialog Box when we can restart or OK
-    }
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 
@@ -415,3 +474,5 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         }
     }
 }
+
+

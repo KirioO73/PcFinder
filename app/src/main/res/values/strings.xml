@@ -17,4 +17,18 @@
     <string name="button__start_img_recognize">Reconnaissance d\'image</string>
     <string name="button_start_ocr">Reconnaissance d\'etiquette</string>
 
+    <string name="not_find_title">Not find</string>
+    <string name="not_find_message">No Matching Find, do you want to retry or set it manually ?</string>
+    <string name="restart">Retry</string>
+    <string name="manual">Manual</string>
+    <string name="quit">Leave</string>
+
+    <string name="not_find_title_man">Not Find</string>
+    <string name="not_find_message_man">Reference not in the Database, \n
+                                        Retry with an other.</string>
+    <string name="restart_man">Retry</string>
+    <string name="quit_man">Leave</string>
+
+    <string name="manual_search_hint">Enter the ref to search</string>
+
 </resources>

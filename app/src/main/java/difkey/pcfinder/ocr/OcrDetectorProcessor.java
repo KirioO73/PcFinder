@@ -55,7 +55,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         this.blist = new ArrayList<String>();
         this.iterations = new ArrayList<Integer>();
         this.banque = 100;
-        this.compteur =5;
+        this.compteur = 5;
         this.data = new ArrayList<String>();
     }
 
@@ -82,6 +82,14 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
             }
         }
+    }
+
+    void resetCache(){
+        this.blist = new ArrayList<String>();
+        this.iterations = new ArrayList<Integer>();
+        this.banque = 100;
+        this.compteur = 5;
+        this.data = new ArrayList<String>();
     }
 
     private void gestionBanque(List<String> blist) {

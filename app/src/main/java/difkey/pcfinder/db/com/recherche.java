@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import difkey.pcfinder.modelFirebase.model_pc;
 import difkey.pcfinder.ocr.OcrCaptureActivity;
+import difkey.pcfinder.Manual_Search_Activity;
 
 public class recherche {
 
@@ -71,7 +72,7 @@ public class recherche {
 
     }
 
-    public String recherchePc(final String ref){
+    public String recherchePcManual(final String ref, final Manual_Search_Activity motherActivity){
         Log.e("OPEN_Recherche", ref);
 
         pcRef = FirebaseDatabase.getInstance().getReference().child("PC");
@@ -85,12 +86,25 @@ public class recherche {
                     retourRecherchePC = (PC.modele + PC.annee + PC.processeur);
                     retourPC = PC;
                     Log.e("SERV", retourRecherchePC + " Ok -------------------------- ");
+                    //Log.e("TEST RETOUR DATA", "annee : " + PC.annee + " --------------------------------------------- ");
+
+                    data.putExtra("title", PC.modele);
+                    data.putExtra("processeur", PC.processeur);
+                    data.putExtra("annee", PC.annee);
+                    data.putExtra("ram", PC.ram);
+                    data.putExtra("marque", PC.marque);
+                    data.putExtra("poids", PC.poids);
+                    data.putExtra("resolution", PC.resolution);
+                    data.putExtra("stockage", PC.stockage);
+                    data.putExtra("taille", PC.taille);
+                    data.putExtra("dimensions", PC.dimensions);
+                    //Log.e("recherche RETOUR DATA", "annee : " + data.getStringExtra("annee") + " --------------------------------------------- ");
+
+                    motherActivity.finded(data);
 
                 }
                 else{
-                    retourRecherchePC = "nothing found";
-                    retourPC = new model_pc();
-                    retourPC.modele = "nothing found";
+                    motherActivity.notFind();
 
                 }
 
@@ -102,7 +116,6 @@ public class recherche {
                 Log.w("ERR", "Failed to read value.", error.toException());
             }
         });
-        //while (retourPC==null){}
         return retourRecherchePC;
     }
 }
