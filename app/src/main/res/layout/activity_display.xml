@@ -7,11 +7,11 @@
     tools:context=".DisplayActivity">
 
     <ScrollView
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:fillViewport="true"
+        android:layout_width="371dp"
+        android:layout_height="494dp"
+        android:clipToPadding="false"
+        android:fillViewport="false"
+        android:scrollbarStyle="insideOverlay"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
