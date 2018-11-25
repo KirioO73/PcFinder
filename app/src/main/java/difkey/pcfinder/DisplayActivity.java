@@ -33,15 +33,15 @@ public class DisplayActivity extends AppCompatActivity {
         resolution = findViewById(R.id.resolution);
         marque = findViewById(R.id.marque);
 
-        title.setText(getIntent().getStringExtra("title"));
-        processeur.setText(getIntent().getStringExtra("processeur"));
-        annee.setText(getIntent().getStringExtra("annee"));
-        ram.setText(getIntent().getStringExtra("ram"));
-        stockage.setText(getIntent().getStringExtra("stockage"));
-        taille.setText(getIntent().getStringExtra("taille"));
-        poids.setText(getIntent().getStringExtra("poids"));
-        dimensions.setText(getIntent().getStringExtra("dimensions"));
-        resolution.setText(getIntent().getStringExtra("resolution"));
-        marque.setText(getIntent().getStringExtra("marque"));
+        title.setText("Title" + getIntent().getStringExtra("title"));
+        processeur.setText("Processeur " + getIntent().getStringExtra("processeur"));
+        annee.setText( "Anne" + getIntent().getStringExtra("annee"));
+        ram.setText("Ram" + getIntent().getStringExtra("ram"));
+        stockage.setText("Stockage" + getIntent().getStringExtra("stockage"));
+        taille.setText("Taille" + getIntent().getStringExtra("taille"));
+        poids.setText("Poids" + getIntent().getStringExtra("poids"));
+        dimensions.setText("Dimensions" + getIntent().getStringExtra("dimensions"));
+        resolution.setText("Resolution" + getIntent().getStringExtra("resolution"));
+        marque.setText("Marque" + getIntent().getStringExtra("marque"));
     }
 }

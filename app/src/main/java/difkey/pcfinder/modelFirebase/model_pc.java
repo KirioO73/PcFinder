@@ -28,7 +28,8 @@ public class model_pc {
                     String marque,
                     String dimensions,
                     String resolution,
-                    String stockage,String taille,
+                    String stockage,
+                    String taille,
                     String poids) {
         this.modele = modele;
         this.processeur = processeur;
