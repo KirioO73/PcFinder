@@ -23,7 +23,7 @@ public class DisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
 
-        title = findViewById(R.id.titreGENERAL);
+        title = findViewById(R.id.TitreGENERAL);
         processeur = findViewById(R.id.valuePROCESSEUR);
         annee = findViewById(R.id.valueANNEE);
         ram = findViewById(R.id.valueRAM);

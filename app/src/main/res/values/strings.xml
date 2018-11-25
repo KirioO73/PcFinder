@@ -46,6 +46,64 @@
     <string name="display_Resolution">RESOLUTION</string>
     <string name="display_Stoquage">STOCKAGE</string>
     <string name="display_Taille">TAILLE</string>
+    <string name="title_activity_display">display</string>
+    <string name="large_text">
+        "\n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n
+        \n"
+    </string>
 
 
 </resources>

@@ -40,9 +40,8 @@ public class recherche {
                     retourRecherchePC = (PC.modele + PC.annee + PC.processeur);
                     retourPC = PC;
                     Log.e("SERV", retourRecherchePC + " Ok -------------------------- ");
-                    //Log.e("TEST RETOUR DATA", "annee : " + PC.annee + " --------------------------------------------- ");
 
-                    data.putExtra("title", PC.modele);
+                    data.putExtra("modele", PC.modele);
                     data.putExtra("processeur", PC.processeur);
                     data.putExtra("annee", PC.annee);
                     data.putExtra("ram", PC.ram);
@@ -52,7 +51,6 @@ public class recherche {
                     data.putExtra("stockage", PC.stockage);
                     data.putExtra("taille", PC.taille);
                     data.putExtra("dimensions", PC.dimensions);
-                    //Log.e("recherche RETOUR DATA", "annee : " + data.getStringExtra("annee") + " --------------------------------------------- ");
 
                     motherActivity.finded(data);
                 }
@@ -88,7 +86,7 @@ public class recherche {
                     Log.e("SERV", retourRecherchePC + " Ok -------------------------- ");
                     //Log.e("TEST RETOUR DATA", "annee : " + PC.annee + " --------------------------------------------- ");
 
-                    data.putExtra("title", PC.modele);
+                    data.putExtra("modele", PC.modele);
                     data.putExtra("processeur", PC.processeur);
                     data.putExtra("annee", PC.annee);
                     data.putExtra("ram", PC.ram);

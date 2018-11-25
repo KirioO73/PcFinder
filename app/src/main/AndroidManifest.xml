@@ -26,9 +26,9 @@
         </activity>
         <activity
             android:name=".ocr.OcrCaptureActivity"
-            android:label="OcrDetection"></activity>
-        <activity android:name=".DisplayActivity"></activity>
-        <activity android:name=".Manual_Search_Activity"></activity>
+            android:label="OcrDetection" />
+        <activity android:name=".DisplayActivity" />
+        <activity android:name=".Manual_Search_Activity" />
     </application>
 
 </manifest>

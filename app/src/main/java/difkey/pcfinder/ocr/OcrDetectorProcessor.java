@@ -97,13 +97,13 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             feed(blist);
         }else {
             if (compteur >0) {
+                //evaporation();
                 epuration();
                 lanceRecherche();
                 compteur --;
             }
             else{
                 ocrActivity.notFinded();
-                //TODO : PAS TROUVER
             }
         }
     }
@@ -111,6 +111,21 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     private void lanceRecherche() {
         for (int i = 0; i < data.size(); i++) {
             finder.recherchePcOcr(data.get(i), ocrActivity);
+        }
+    }
+
+    private  void evaporation(){
+        int qtevap = 3;
+        for (int i = 0; i< iterations.size(); i++){
+            banque += (qtevap > iterations.get(i)) ? qtevap : iterations.get(i);
+            iterations.set(i, iterations.get(i) - qtevap);
+        }
+        for(int i = iterations.size() -1; i>=0; i--){
+            if(iterations.get(i) <= 0){
+                iterations.remove(i);
+                data.remove(i);
+                i--;
+            }
         }
     }
 
