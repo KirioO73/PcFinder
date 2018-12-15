@@ -9,6 +9,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="30dp"
         android:orientation="vertical"
         android:scrollbars="none"
         tools:layout_editor_absoluteX="8dp">
@@ -59,6 +63,7 @@
                 android:id="@+id/MARQUE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Marque" />
 
@@ -66,6 +71,7 @@
                 android:id="@+id/valueMARQUE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -80,6 +86,7 @@
                 android:id="@+id/MODELE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Modele" />
 
@@ -87,6 +94,7 @@
                 android:id="@+id/valueMODELE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -100,6 +108,7 @@
                 android:id="@+id/ANNEE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Annee" />
 
@@ -107,6 +116,7 @@
                 android:id="@+id/valueANNEE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -138,6 +148,7 @@
                 android:id="@+id/DIMENSIONS"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Dimensions" />
 
@@ -145,6 +156,7 @@
                 android:id="@+id/valueDIMENSIONS"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -159,6 +171,7 @@
                 android:id="@+id/POIDS"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Poids" />
 
@@ -166,6 +179,7 @@
                 android:id="@+id/valuePOIDS"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -197,6 +211,7 @@
                 android:id="@+id/RESOLUTION"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Resolution" />
 
@@ -204,6 +219,7 @@
                 android:id="@+id/valueRESOLUTION"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -217,6 +233,7 @@
                 android:id="@+id/TAILLE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Taille" />
 
@@ -224,6 +241,7 @@
                 android:id="@+id/valueTAILLE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -256,6 +274,7 @@
                 android:id="@+id/PROCESSEUR"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Processeur" />
 
@@ -263,6 +282,7 @@
                 android:id="@+id/valuePROCESSEUR"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -276,6 +296,7 @@
                 android:id="@+id/STOCKAGE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_Stoquage" />
 
@@ -283,6 +304,7 @@
                 android:id="@+id/valueSTOCKAGE"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -296,6 +318,7 @@
                 android:id="@+id/RAM"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:text="@string/display_RAM" />
 
@@ -303,6 +326,7 @@
                 android:id="@+id/valueRAM"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="-40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 

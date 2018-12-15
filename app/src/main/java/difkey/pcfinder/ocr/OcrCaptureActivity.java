@@ -1,18 +1,3 @@
-/*
- * Copyright (C) The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package difkey.pcfinder.ocr;
 
 import android.Manifest;
@@ -69,16 +54,14 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     // Constants used to pass extra data in the intent
     public static final String AutoFocus = "AutoFocus";
     public static final String UseFlash = "UseFlash";
-    public static final String TextBlockObject = "String";
 
     private CameraSource mCameraSource;
     private CameraSourcePreview mPreview;
     private GraphicOverlay<OcrGraphic> mGraphicOverlay;
     private OcrDetectorProcessor detector;
 
-    // Helper objects for detecting taps and pinches.
+    // Helper objects for detecting pinches.
     private ScaleGestureDetector scaleGestureDetector;
-    private GestureDetector gestureDetector;
 
     boolean autoFocus;
     boolean useFlash;
@@ -107,7 +90,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
             requestCameraPermission();
         }
 
-        gestureDetector = new GestureDetector(this, new CaptureGestureListener());
         scaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
         Snackbar.make(mGraphicOverlay, "Tap to capture. Pinch/Stretch to zoom",
@@ -151,9 +133,8 @@ public final class OcrCaptureActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent e) {
         boolean b = scaleGestureDetector.onTouchEvent(e);
 
-        boolean c = gestureDetector.onTouchEvent(e);
 
-        return b || c || super.onTouchEvent(e);
+        return b || super.onTouchEvent(e);
     }
 
     /**
@@ -322,8 +303,10 @@ public final class OcrCaptureActivity extends AppCompatActivity {
 
     boolean over = false;
 
+    /***
+     * Call when there is no success on the DB searching and run on the UI the information
+     */
     public void notFinded() {
-        //TODO not finded show dialog Box when we can restart or OK
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -336,6 +319,9 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         });
     }
 
+    /***
+     * Basic alert Dialog to interact with the user when the process is over with no success
+     */
     private void createAlertDialogStop() {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -373,51 +359,16 @@ public final class OcrCaptureActivity extends AppCompatActivity {
                 .show();
     }
 
-
-
-
+    /***
+     *  Call when an the object on the DB is find
+     *  Finish the OCR activity with success and pass in data the object
+     *
+     * @param data
+     */
     public void finded(Intent data){
         Log.e("OCR RETOUR DATA", "annee : " + data.getStringExtra("annee") + " --------------------------------------------- ");
         setResult(CommonStatusCodes.SUCCESS, data);
         finish();
-    }
-
-    /**
-     * onTap is called to capture the first TextBlock under the tap location and return it to
-     * the Initializing Activity.
-     *
-     * @param rawX - the raw position of the tap
-     * @param rawY - the raw position of the tap.
-     * @return true if the activity is ending.
-     */
-    private boolean onTap(float rawX, float rawY) {
-        OcrGraphic graphic = mGraphicOverlay.getGraphicAtLocation(rawX, rawY);
-        TextBlock text = null;
-        if (graphic != null) {
-            text = graphic.getTextBlock();
-            if (text != null && text.getValue() != null) {
-                Intent data = new Intent();
-                data.putExtra(TextBlockObject, text.getValue());
-                setResult(CommonStatusCodes.SUCCESS, data);
-                finish();
-            }
-            else {
-                Log.d(TAG, "text data is null");
-            }
-        }
-        else {
-            Log.d(TAG,"no text detected");
-        }
-        return text != null;
-    }
-
-
-    private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onSingleTapConfirmed(MotionEvent e) {
-            return onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
-        }
     }
 
     private class ScaleListener implements ScaleGestureDetector.OnScaleGestureListener {

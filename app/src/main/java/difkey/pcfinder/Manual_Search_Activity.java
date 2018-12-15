@@ -42,7 +42,7 @@ public class Manual_Search_Activity extends AppCompatActivity {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_DONE) {
                     searchInput.clearFocus();
-                    finder.recherchePcManual(searchInput.getText().toString().toUpperCase(), activity);
+                    finder.searchPcForManualInput(searchInput.getText().toString().toUpperCase(), activity);
                     return true;
                 }
                 return false;
@@ -53,7 +53,7 @@ public class Manual_Search_Activity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 searchInput.clearFocus();
-                finder.recherchePcManual(searchInput.getText().toString().toUpperCase(), activity);
+                finder.searchPcForManualInput(searchInput.getText().toString().toUpperCase(), activity);
             }
         });
     }

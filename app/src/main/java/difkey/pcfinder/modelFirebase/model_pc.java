@@ -44,7 +44,6 @@ public class model_pc {
     }
 
     public String toString(){
-        //TODO
         return "";
     }
 

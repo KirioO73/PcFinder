@@ -1,18 +1,3 @@
-/*
- * Copyright (C) The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package difkey.pcfinder.ocr;
 
 import android.util.Log;
@@ -52,11 +37,13 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
         finder = new recherche();
 
+
         this.blist = new ArrayList<String>();
         this.iterations = new ArrayList<Integer>();
+        this.data = new ArrayList<String>();
+
         this.banque = 100;
         this.compteur = 5;
-        this.data = new ArrayList<String>();
     }
 
     /**
@@ -68,7 +55,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
      */
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
-        String TB = "";
+        String TB;
         mGraphicOverlay.clear();
         SparseArray<TextBlock> items = detections.getDetectedItems();
         for (int i = 0; i < items.size(); ++i) {
@@ -99,7 +86,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             if (compteur >0) {
                 //evaporation();
                 epuration();
-                lanceRecherche();
+                startDbSearch();
                 compteur --;
             }
             else{
@@ -108,12 +95,26 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
-    private void lanceRecherche() {
+    private void startDbSearch() {
         for (int i = 0; i < data.size(); i++) {
-            finder.recherchePcOcr(data.get(i), ocrActivity);
+            finder.searchPcforOCR(data.get(i), ocrActivity);
         }
     }
 
+    private void feed(List<String> blist) {
+        for (int i = 0; i< blist.size(); i++){
+            if (banque>0) {
+                if (data.contains(blist.get(i))) {
+                    iterations.set(data.indexOf(blist.get(i)), iterations.get(data.indexOf(blist.get(i))) + 1);
+                } else {
+                    data.add(blist.get(i));
+                    iterations.add(1);
+                }
+                banque--;
+            }else break;
+        }
+    }
+    //
     private  void evaporation(){
         int qtevap = 3;
         for (int i = 0; i< iterations.size(); i++){
@@ -139,19 +140,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
-    private void feed(List<String> blist) {
-        for (int i = 0; i< blist.size(); i++){
-            if (banque>0) {
-                if (data.contains(blist.get(i))) {
-                    iterations.set(data.indexOf(blist.get(i)), iterations.get(data.indexOf(blist.get(i))) + 1);
-                } else {
-                    data.add(blist.get(i));
-                    iterations.add(1);
-                }
-                banque--;
-            }else break;
-        }
-    }
+
 
     /**
      * Frees the resources associated with this detection processor.
