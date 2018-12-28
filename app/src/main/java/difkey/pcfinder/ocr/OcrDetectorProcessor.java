@@ -29,7 +29,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     private ArrayList<String> data;
     private List <Integer> iterations;
     private int bank;
-    private int compteur;
+    private int counter;
 
     OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, OcrCaptureActivity ocrActivity) {
         this.ocrActivity = ocrActivity;
@@ -43,7 +43,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         this.data = new ArrayList<String>();
 
         this.bank = 100;
-        this.compteur = 5;
+        this.counter = 5;
     }
 
     /**
@@ -78,7 +78,7 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         this.detectedString = new ArrayList<String>();
         this.iterations = new ArrayList<Integer>();
         this.bank = 100;
-        this.compteur = 5;
+        this.counter = 5;
         this.data = new ArrayList<String>();
     }
 
@@ -93,11 +93,11 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         if (bank !=0){
             feed(detectedStrings);
         }else {
-            if (compteur >0) {
+            if (counter >0) {
                 //evaporation();
                 purification();
                 startDbSearch();
-                compteur --;
+                counter--;
             }
             else{
                 ocrActivity.notFinded();
