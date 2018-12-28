@@ -25,10 +25,10 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
     private recherche finder;
 
-    private List<String> blist;
+    private List<String> detectedString;
     private ArrayList<String> data;
     private List <Integer> iterations;
-    private int banque;
+    private int bank;
     private int compteur;
 
     OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, OcrCaptureActivity ocrActivity) {
@@ -38,11 +38,11 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         finder = new recherche();
 
 
-        this.blist = new ArrayList<String>();
+        this.detectedString = new ArrayList<String>();
         this.iterations = new ArrayList<Integer>();
         this.data = new ArrayList<String>();
 
-        this.banque = 100;
+        this.bank = 100;
         this.compteur = 5;
     }
 
@@ -62,8 +62,8 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             TextBlock item = items.valueAt(i);
             if (item != null && item.getValue() != null) {
                 TB = item.getValue();
-                blist =  Arrays.asList((TB.split(" |\\n|\\.|\\#|\\$|\\[|\\]")));
-                gestionBanque(blist);
+                detectedString =  Arrays.asList((TB.split(" |\\n|\\.|\\#|\\$|\\[|\\]")));
+                bankProcessing(detectedString);
                 Log.d("Processor", "Text detected! " + data);
                 Log.d("Processor", "Text detected! " + iterations);
 
@@ -71,21 +71,31 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
+    /**
+     * Reset all the data of the algorithm, for restart cleanly
+     */
     void resetCache(){
-        this.blist = new ArrayList<String>();
+        this.detectedString = new ArrayList<String>();
         this.iterations = new ArrayList<Integer>();
-        this.banque = 100;
+        this.bank = 100;
         this.compteur = 5;
         this.data = new ArrayList<String>();
     }
 
-    private void gestionBanque(List<String> blist) {
-        if (banque!=0){
-            feed(blist);
+
+    /**
+     * Add Strings to the bank data if the bank have token to give
+     * else, it will clean the bank with an algorithm
+     *
+     * @param detectedStrings the string to add in the bank
+     */
+    private void bankProcessing(List<String> detectedStrings) {
+        if (bank !=0){
+            feed(detectedStrings);
         }else {
             if (compteur >0) {
                 //evaporation();
-                epuration();
+                purification();
                 startDbSearch();
                 compteur --;
             }
@@ -95,31 +105,45 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
+    /**
+     * Launch Database research on the relevant data
+     */
     private void startDbSearch() {
         for (int i = 0; i < data.size(); i++) {
             finder.searchPcforOCR(data.get(i), ocrActivity);
         }
     }
 
-    private void feed(List<String> blist) {
-        for (int i = 0; i< blist.size(); i++){
-            if (banque>0) {
-                if (data.contains(blist.get(i))) {
-                    iterations.set(data.indexOf(blist.get(i)), iterations.get(data.indexOf(blist.get(i))) + 1);
+    /**
+     * Add a list of string to the bank data,
+     * if bank already knew this string, add an iteration,
+     * else add the string in the data
+     *
+     * @param detectedStrings the string to add in the bank
+     */
+    private void feed(List<String> detectedStrings) {
+        for (int i = 0; i< detectedStrings.size(); i++){
+            if (bank >0) {
+                if (data.contains(detectedStrings.get(i))) {
+                    iterations.set(data.indexOf(detectedStrings.get(i)), iterations.get(data.indexOf(detectedStrings.get(i))) + 1);
                 } else {
-                    data.add(blist.get(i));
+                    data.add(detectedStrings.get(i));
                     iterations.add(1);
                 }
-                banque--;
+                bank--;
             }else break;
         }
     }
-    //
+
+    /**
+     * Reduce an amount of iteration of all the data's strings, and put this value back into the bank
+     * if it go under 0 it is suppressed from the data
+     */
     private  void evaporation(){
-        int qtevap = 3;
-        for (int i = 0; i< iterations.size(); i++){
-            banque += (qtevap > iterations.get(i)) ? qtevap : iterations.get(i);
-            iterations.set(i, iterations.get(i) - qtevap);
+        int amountOfEvaporation = 3;
+        for (int i = 0; i < iterations.size(); i++){
+            bank += (amountOfEvaporation > iterations.get(i)) ? amountOfEvaporation : iterations.get(i);
+            iterations.set(i, iterations.get(i) - amountOfEvaporation);
         }
         for(int i = iterations.size() -1; i>=0; i--){
             if(iterations.get(i) <= 0){
@@ -130,12 +154,17 @@ public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
         }
     }
 
-    private void epuration() {
+
+    /**
+     * Remove all the string with min iteration from the bank data
+     * And put back their iteration value into the bank
+     */
+    private void purification() {
         int min = Collections.min(iterations);
         while (iterations.indexOf(min) !=-1)
         {
             data.remove(iterations.indexOf(min));
-            banque=banque+iterations.get(iterations.indexOf(min));
+            bank = bank +iterations.get(iterations.indexOf(min));
             iterations.remove(iterations.indexOf(min));
         }
     }

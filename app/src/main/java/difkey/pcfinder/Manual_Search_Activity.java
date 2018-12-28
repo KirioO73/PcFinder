@@ -58,13 +58,22 @@ public class Manual_Search_Activity extends AppCompatActivity {
         });
     }
 
+    /***
+     *  Call when an the object on the DB is find
+     *  Finish the OCR activity with success and pass in data the object
+     *
+     * @param data
+     */
     public void finded(Intent data){
-        //Finish and return to main
         setResult(CommonStatusCodes.SUCCESS, data);
         finish();
     }
 
     boolean over = false;
+
+    /***
+     * Call when there is no success on the DB searching and run on the UI the information
+     */
     public void notFind(){
         //Dialog + ask if want to retry
         runOnUiThread(new Runnable() {
@@ -79,6 +88,9 @@ public class Manual_Search_Activity extends AppCompatActivity {
         });
     }
 
+    /***
+     * Basic alert Dialog to interact with the user when the process is over with no success
+     */
     private void createAlertDialogStop() {
         AlertDialog.Builder builder;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -90,7 +102,6 @@ public class Manual_Search_Activity extends AppCompatActivity {
                 .setMessage(R.string.not_find_message_man)
                 .setPositiveButton(R.string.restart_man, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        //Reset search engine ?
                         Log.e("DIALOG NOTFIND_MAN : ", "retry");
                         over = false;
                     }

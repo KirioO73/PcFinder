@@ -5,6 +5,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
 public class model_pc {
+
+    //Model of Object to handle the objects of the DB
     public String annee;
     public String dimensions;
     public String marque;
@@ -16,10 +18,6 @@ public class model_pc {
     public String stockage;
     public String taille;
 
-
-    public model_pc() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
-    }
 
     public model_pc(String modele,
                     String processeur,

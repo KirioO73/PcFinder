@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         B_recoText.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                // launch Ocr capture activity.
+                // launch manual search activity.
                 Intent intent = new Intent(view.getContext(), Manual_Search_Activity.class);
                 startActivityForResult(intent, MANUAL_SEARCHING);
             }
@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Handle the result of finishing activities :
+     *  On success, start an other activity to show the data,
+     *  On no success, handle the user choice
+     *
+     * @param requestCode id the launched activity
+     * @param resultCode  id the type of result (success, no success, canceled ...
+     * @param data the data sent by the cosing activity
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == RC_OCR_CAPTURE) {

@@ -30,6 +30,7 @@ public class recherche {
     public void searchPcforOCR(final String ref, final OcrCaptureActivity motherActivity){
         Log.e("OPEN_Recherche", ref);
 
+        //Check size of the ref to avoid many useless DB's request
         if (ref.length() < 3) return;
 
         pcRef = FirebaseDatabase.getInstance().getReference().child("PC");
